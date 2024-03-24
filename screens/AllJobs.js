@@ -9,13 +9,15 @@ import {
 import axios from 'axios'
 import Nöbet from '../components/components/nöbet/Nöbet'
 import { COLORS, SIZES } from '../assets/constants'
-import styles from '../assets/css/popularjobs.style'
+import styles from '../assets/css/allJobs'
+import { useIsFocused } from '@react-navigation/native'
 
 const AllJobs = () => {
   const [data, setData] = useState([])
   const [error, setError] = useState(null)
   const [selectedJob, setSelectedJob] = useState([])
   const isLoading = false
+  const isFocused = useIsFocused()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +29,8 @@ const AllJobs = () => {
       }
     }
     fetchData()
-  }, [])
+    //her focus değiştiğinde tekrardan fetch edecek
+  }, [isFocused])
 
   const handleCardPress = (item) => {
     if (item._id === selectedJob) {
@@ -37,7 +40,6 @@ const AllJobs = () => {
     console.log(item._id + 'pressed')
     setSelectedJob(item._id)
   }
-  console.log(selectedJob, handleCardPress)
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -63,7 +65,6 @@ const AllJobs = () => {
               />
             )}
             keyExtractor={(item) => item._id}
-            contentContainerStyle={{ columnGap: SIZES.medium }}
             ItemSeparatorComponent={() => (
               <View style={{ height: SIZES.medium }} />
             )}

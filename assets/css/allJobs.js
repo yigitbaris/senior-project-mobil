@@ -5,6 +5,7 @@ import { COLORS, FONT, SIZES } from '../constants'
 const styles = StyleSheet.create({
   container: {
     marginTop: SIZES.small,
+    backgroundColor: '#333',
   },
   header: {
     flexDirection: 'row',
@@ -15,6 +16,7 @@ const styles = StyleSheet.create({
     color: COLORS.primary,
     fontWeight: '500',
     marginLeft: 25,
+    color: '#f0f0f0',
   },
   headerBtn: {
     fontSize: SIZES.medium,
@@ -23,8 +25,8 @@ const styles = StyleSheet.create({
   cardsContainer: {
     marginTop: SIZES.medium,
     marginBottom: 70,
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginLeft: 20,
+    marginRight: 20,
   },
 })
 

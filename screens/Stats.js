@@ -1,6 +1,4 @@
-import { Text } from 'react-native'
-
 const Stats = () => {
-  return <Text>Stats</Text>
+  return <View>Stats</View>
 }
 export default Stats

@@ -1,34 +1,67 @@
 import React from 'react'
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Button } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons'
+import JobInfo from '../JobInfo'
 
 import styles from './nöbet.style'
 
-const Nöbet = ({ item, selectedJob, handleCardPress }) => {
+const Nöbet = ({ item }) => {
+  const {
+    company,
+    position,
+    jobLocation,
+    jobDate,
+    jobType,
+    jobStatus,
+    role,
+    _id,
+  } = item
+
   return (
-    <TouchableOpacity
-      style={styles.container(selectedJob, item)}
-      onPress={() => handleCardPress(item)}
-    >
-      <TouchableOpacity style={styles.logoContainer(selectedJob, item)}>
-        <Text style={styles.mainIcon}>{item.company.charAt(0)}</Text>
-        {/* <Text style={styles.jobName(selectedJob, item)} numberOfLines={1}>
-          {item.position}
-        </Text> */}
-      </TouchableOpacity>
-      <Text style={styles.companyName} numberOfLines={1}>
-        {item.company}
-      </Text>
-      <View style={styles.infoContainer}>
-        <Text style={styles.jobName(selectedJob, item)} numberOfLines={1}>
-          {item.position}
-        </Text>
-        <FontAwesome5 name='location-arrow' size={24} color='black' />
-        <FontAwesome5 name='briefcase' size={24} color='black' />
-        <FontAwesome5 name='calendar-alt' size={24} color='black' />
-        <Text style={styles.location}> {item.jobLocation}</Text>
+    <View style={styles.wrapper}>
+      <View style={styles.header}>
+        <View>
+          <Text style={styles.mainIcon}>{company.charAt(0)}</Text>
+        </View>
+        <View style={styles.headerSpace}>
+          <View>
+            <Text style={styles.position}>{position}</Text>
+            <Text style={styles.company}>{company}</Text>
+          </View>
+          <View style={styles.status}>
+            <Text style={styles.statusText}>{jobStatus}</Text>
+          </View>
+        </View>
       </View>
-    </TouchableOpacity>
+      <View style={styles.content}>
+        <View style={styles.contentCenter}>
+          <JobInfo
+            icon={
+              <FontAwesome5 name='location-arrow' size={24} color='#B3AEC6' />
+            }
+            text={jobLocation}
+          />
+          <JobInfo
+            icon={<FontAwesome5 name='briefcase' size={24} color='#B3AEC6' />}
+            text={jobType}
+          />
+          <JobInfo
+            icon={
+              <FontAwesome5 name='calendar-alt' size={24} color='#B3AEC6' />
+            }
+            text={jobDate}
+          />
+        </View>
+        <View style={styles.btn}>
+          <TouchableOpacity style={styles.editBtn}>
+            <Text style={styles.buttonText}>Edit</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.deleteBtn}>
+            <Text style={styles.buttonText}>Delete</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
   )
 }
 

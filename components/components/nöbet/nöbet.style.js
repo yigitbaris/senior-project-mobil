@@ -3,67 +3,103 @@ import { StyleSheet } from 'react-native'
 import { COLORS, FONT, SHADOWS, SIZES } from '../../../assets/constants'
 
 const styles = StyleSheet.create({
-  container: (selectedJob, item) => ({
-    width: 350,
-    padding: SIZES.xLarge,
-    backgroundColor: selectedJob === item._id ? COLORS.primary : '#FFF',
-    borderRadius: SIZES.medium,
-    ...SHADOWS.medium,
-    shadowColor: COLORS.white,
-  }),
-  logoContainer: (selectedJob, item) => ({
-    width: 50,
-    height: 50,
-    backgroundColor: '#2cb1bc',
-    borderRadius: SIZES.medium,
-    justifyContent: 'center',
+  wrapper: {
+    backgroundColor: '#3f3f3f',
+    borderRadius: 20,
+    display: 'flex',
+    flexDirection: 'column',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+    marginBottom: 10,
+  },
+  header: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E0E0E0',
+    flexDirection: 'row',
     alignItems: 'center',
-  }),
+  },
   mainIcon: {
-    width: '%100',
-    height: '%100',
-    alignItems: 'center',
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: '#36a4c0',
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    lineHeight: 60,
+    color: '#FFFFFF',
+    marginRight: 20,
+  },
+  headerSpace: {
+    flexDirection: 'row',
+    display: 'flex',
+  },
+  position: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#e1d6d6',
+  },
+  company: {
+    fontSize: 16,
+    color: '#e1d6d6',
+  },
+  status: {
+    width: 100,
+    height: 30,
+    borderRadius: 10,
     justifyContent: 'center',
-    backgroundColor: '#2cb1bc',
-    borderRadius: 8,
-    fontSize: 24,
-    fontWeight: '700',
-    textTransform: 'uppercase',
+    alignItems: 'center',
+    backgroundColor: 'grey',
+    marginStart: 50,
+  },
+  statusText: {
+    textTransform: 'capitalize',
     color: '#FFFFFF',
   },
-  companyName: {
-    fontSize: SIZES.medium,
-    color: '#B3AEC6',
-    marginTop: SIZES.small / 1.5,
+  content: {
+    padding: 10,
+    marginTop: 20,
+    justifyContent: 'space-evenly',
   },
-  infoContainer: {
-    marginTop: SIZES.large,
-    backgroundColor: 'red',
-  },
-  jobName: (selectedJob, item) => ({
-    fontSize: SIZES.large,
-    color: selectedJob === item.job_id ? COLORS.white : COLORS.primary,
-  }),
-  infoWrapper: {
+  contentCenter: {
     flexDirection: 'row',
-    marginTop: 5,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  publisher: (selectedJob) => ({
-    fontSize: SIZES.medium - 2,
-    color: selectedJob === item.job_id ? COLORS.white : COLORS.primary,
-  }),
-  location: {
-    fontSize: SIZES.medium - 2,
-    color: '#B3AEC6',
+  actions: {
+    marginTop: 10,
+    flexDirection: 'row',
   },
-  flatList: {
-    display: 'flex',
+  btn: {
+    height: 50,
+    flexDirection: 'row',
     marginTop: 20,
   },
-  nöbet: {
-    marginTop: 40,
+  editBtn: {
+    height: 40,
+    width: 60,
+    backgroundColor: '#36a4c0',
+    borderRadius: 10,
+  },
+  deleteBtn: {
+    height: 40,
+    width: 60,
+    backgroundColor: '#36a4c0',
+    borderRadius: 10,
+    marginLeft: 10,
+  },
+  buttonText: {
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
+    marginTop: 10,
+    color: 'white',
   },
 })
 
