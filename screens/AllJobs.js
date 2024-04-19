@@ -24,7 +24,7 @@ const AllJobs = () => {
     const fetchData = async () => {
       try {
         setLoading(true)
-        const response = await axios.get('http://172.27.224.1:5100/api/v1/jobs')
+        const response = await axios.get('http://172.30.192.1:5100/api/v1/jobs')
         setData(response.data.jobs)
         setLoading(false)
       } catch (error) {

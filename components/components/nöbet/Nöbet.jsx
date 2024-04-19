@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity, Button } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons'
 import JobInfo from '../JobInfo'
+import * as RootNavigation from '../../../context/NavigationRef'
 
 import styles from './nöbet.style'
 
@@ -16,6 +17,10 @@ const Nöbet = ({ item }) => {
     role,
     _id,
   } = item
+
+  const handleEditBtn = () => {
+    console.log('denemeeeee' + _id)
+  }
 
   return (
     <View style={styles.wrapper}>
@@ -53,7 +58,7 @@ const Nöbet = ({ item }) => {
           />
         </View>
         <View style={styles.btn}>
-          <TouchableOpacity style={styles.editBtn}>
+          <TouchableOpacity style={styles.editBtn} onPress={handleEditBtn}>
             <Text style={styles.buttonText}>Edit</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.deleteBtn}>

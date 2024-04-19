@@ -20,7 +20,7 @@ const Stats = () => {
     const currentUser = async () => {
       try {
         const response = await axios.get(
-          'http://172.27.224.1:5100/api/v1/users/current-user'
+          'http://172.30.192.1:5100/api/v1/users/current-user'
         )
         setUser(response.data.user)
       } catch (error) {
@@ -35,7 +35,7 @@ const Stats = () => {
     try {
       console.log(user)
       await axios.patch(
-        'http://172.27.224.1:5100/api/v1/users/update-user',
+        'http://172.30.192.1:5100/api/v1/users/update-user',
         user
       )
       ToastManager.success('User Updated!')

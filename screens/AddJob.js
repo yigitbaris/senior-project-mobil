@@ -25,7 +25,7 @@ const AddJob = () => {
   const handleSaveJob = async () => {
     try {
       console.log(job)
-      await axios.post('http://172.27.224.1:5100/api/v1/jobs', job)
+      await axios.post('http://172.30.192.1:5100/api/v1/jobs', job)
       ToastManager.success('Job saved!')
       RootNavigation.navigate('AllJobs')
     } catch (error) {
