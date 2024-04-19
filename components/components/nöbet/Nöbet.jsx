@@ -3,8 +3,9 @@ import { View, Text, Image, TouchableOpacity, Button } from 'react-native'
 import { FontAwesome5 } from '@expo/vector-icons'
 import JobInfo from '../JobInfo'
 import * as RootNavigation from '../../../context/NavigationRef'
-
+import axios from 'axios'
 import styles from './nöbet.style'
+import { API_IP } from '@env'
 
 const Nöbet = ({ item }) => {
   const {
@@ -19,7 +20,18 @@ const Nöbet = ({ item }) => {
   } = item
 
   const handleEditBtn = () => {
-    console.log('denemeeeee' + _id)
+    RootNavigation.navigate('EditJobFlow', { id: _id })
+  }
+
+  const handleDeleteBtn = async () => {
+    try {
+      const response = await axios.delete(
+        `http://${API_IP}:5100/api/v1/jobs/${_id}`
+      )
+      RootNavigation.navigate('AllJobs')
+    } catch (error) {
+      console.error('Login error:', error)
+    }
   }
 
   return (
@@ -61,7 +73,7 @@ const Nöbet = ({ item }) => {
           <TouchableOpacity style={styles.editBtn} onPress={handleEditBtn}>
             <Text style={styles.buttonText}>Edit</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.deleteBtn}>
+          <TouchableOpacity style={styles.deleteBtn} onPress={handleDeleteBtn}>
             <Text style={styles.buttonText}>Delete</Text>
           </TouchableOpacity>
         </View>

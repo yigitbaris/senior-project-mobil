@@ -11,6 +11,7 @@ import axios from 'axios'
 import Nöbet from '../components/components/nöbet/Nöbet'
 import { COLORS, SIZES } from '../assets/constants'
 import { useIsFocused } from '@react-navigation/native'
+import { API_IP } from '@env'
 
 const AllJobs = () => {
   const [data, setData] = useState([])
@@ -24,7 +25,7 @@ const AllJobs = () => {
     const fetchData = async () => {
       try {
         setLoading(true)
-        const response = await axios.get('http://172.30.192.1:5100/api/v1/jobs')
+        const response = await axios.get(`http://${API_IP}:5100/api/v1/jobs`)
         setData(response.data.jobs)
         setLoading(false)
       } catch (error) {

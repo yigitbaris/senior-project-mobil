@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   View,
   Text,
@@ -10,9 +10,14 @@ import {
 import axios from 'axios'
 import ToastManager from 'toastify-react-native'
 import * as RootNavigation from '../context/NavigationRef'
+import { API_IP } from '@env'
+import { useRoute } from '@react-navigation/native'
 
-const AddJob = () => {
+const EditJob = () => {
+  const route = useRoute()
+  const { id } = route.params || {}
   const today = new Date()
+  const [loading, setLoading] = useState(false)
   const [job, setJob] = useState({
     company: 'silinecek',
     position: 'silinecek',
@@ -21,11 +26,27 @@ const AddJob = () => {
     jobLocation: 'silinecek',
     jobDate: 'Monday, March 25',
   })
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true)
+        const response = await axios.get(
+          `http://${API_IP}:5100/api/v1/jobs/${id}`
+        )
+        setJob(response.data.job)
+        console.log(job)
+        setLoading(false)
+      } catch (error) {
+        console.error('Login error:', error)
+      }
+    }
+    fetchData()
+  }, [])
 
   const handleSaveJob = async () => {
     try {
       console.log(job)
-      await axios.post('http://172.30.192.1:5100/api/v1/jobs', job)
+      await axios.patch(`http://${API_IP}:5100/api/v1/jobs/${id}`, job)
       ToastManager.success('Job saved!')
       RootNavigation.navigate('AllJobs')
     } catch (error) {
@@ -38,7 +59,7 @@ const AddJob = () => {
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <View style={styles.addJob}>
-          <Text style={styles.addText}>Add Job</Text>
+          <Text style={styles.addText}>Edit Job</Text>
         </View>
         <View style={styles.rowContainer}>
           <View style={styles.inputContainer}>
@@ -172,4 +193,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default AddJob
+export default EditJob

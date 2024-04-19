@@ -9,6 +9,7 @@ import {
 import ToastManager from 'toastify-react-native'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios'
+import { API_IP } from '@env'
 
 const Login = () => {
   const [email, setEmail] = useState('baris@gmail.com')
@@ -18,7 +19,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        'http://172.30.192.1:5100/api/v1/auth/login',
+        `http://${API_IP}:5100/api/v1/auth/login`,
         {
           email: email,
           password: password,

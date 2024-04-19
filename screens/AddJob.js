@@ -10,6 +10,7 @@ import {
 import axios from 'axios'
 import ToastManager from 'toastify-react-native'
 import * as RootNavigation from '../context/NavigationRef'
+import { API_IP } from '@env'
 
 const AddJob = () => {
   const today = new Date()
@@ -25,7 +26,7 @@ const AddJob = () => {
   const handleSaveJob = async () => {
     try {
       console.log(job)
-      await axios.post('http://172.30.192.1:5100/api/v1/jobs', job)
+      await axios.post(`http://${API_IP}:5100/api/v1/jobs`, job)
       ToastManager.success('Job saved!')
       RootNavigation.navigate('AllJobs')
     } catch (error) {

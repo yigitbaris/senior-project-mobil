@@ -11,6 +11,7 @@ import {
 import axios from 'axios'
 import ToastManager from 'toastify-react-native'
 import { Context as AuthContext } from '../context/AuthContext'
+import { API_IP } from '@env'
 
 const Stats = () => {
   const [user, setUser] = useState({})
@@ -20,7 +21,7 @@ const Stats = () => {
     const currentUser = async () => {
       try {
         const response = await axios.get(
-          'http://172.30.192.1:5100/api/v1/users/current-user'
+          `http://${API_IP}:5100/api/v1/users/current-user`
         )
         setUser(response.data.user)
       } catch (error) {

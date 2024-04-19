@@ -8,6 +8,7 @@ import {
   Profile,
   Register,
   Stats,
+  EditJob,
 } from './screens'
 import LogoutContainer from './components/components/LogoutContainer'
 import ToastManager from 'toastify-react-native'
@@ -99,6 +100,11 @@ const DashboardFlow = () => (
     />
   </TabMaterial.Navigator>
 )
+const EditJobFlow = () => (
+  <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Screen name='Edit' component={EditJob} />
+  </Stack.Navigator>
+)
 
 const App = () => {
   return (
@@ -110,6 +116,7 @@ const App = () => {
       >
         <Stack.Screen name='LoginFlow' component={LoginFlow} />
         <Stack.Screen name='DashboardFlow' component={DashboardFlow} />
+        <Stack.Screen name='EditJobFlow' component={EditJob} />
       </Stack.Navigator>
       <ToastManager />
     </NavigationContainer>
