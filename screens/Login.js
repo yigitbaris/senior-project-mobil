@@ -19,7 +19,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post(
-        `http://${API_IP}:5100/api/v1/auth/login`,
+        `http://192.168.244.1:5100/api/v1/auth/login`,
         {
           email: email,
           password: password,

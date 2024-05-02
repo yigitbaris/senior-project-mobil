@@ -22,7 +22,7 @@ const Register = ({ navigation }) => {
     try {
       console.log(user)
       const response = await axios.post(
-        'http://172.27.224.1:5100/api/v1/auth/register',
+        'http://192.168.244.1:5100/api/v1/auth/register',
         user
       )
       ToastManager.success('Logged in!')

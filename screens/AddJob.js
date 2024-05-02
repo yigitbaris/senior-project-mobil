@@ -26,7 +26,7 @@ const AddJob = () => {
   const handleSaveJob = async () => {
     try {
       console.log(job)
-      await axios.post(`http://${API_IP}:5100/api/v1/jobs`, job)
+      await axios.post(`http://192.168.244.1:5100/api/v1/jobs`, job)
       ToastManager.success('Job saved!')
       RootNavigation.navigate('AllJobs')
     } catch (error) {
@@ -39,23 +39,23 @@ const AddJob = () => {
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <View style={styles.addJob}>
-          <Text style={styles.addText}>Add Job</Text>
+          <Text style={styles.addText}>İş Ekle</Text>
         </View>
         <View style={styles.rowContainer}>
           <View style={styles.inputContainer}>
-            <Text style={styles.header}>Company</Text>
+            <Text style={styles.header}>Şirket</Text>
             <TextInput
               style={styles.input}
-              placeholder='Company'
+              placeholder='Şirket'
               value={job.company}
               onChangeText={(text) => setJob({ ...job, company: text })}
             />
           </View>
           <View style={styles.inputContainer}>
-            <Text style={styles.header}>Position</Text>
+            <Text style={styles.header}>Pozisyon</Text>
             <TextInput
               style={styles.input}
-              placeholder='Position'
+              placeholder='Pozisyon'
               value={job.position}
               onChangeText={(text) => setJob({ ...job, position: text })}
             />
@@ -63,19 +63,19 @@ const AddJob = () => {
         </View>
         <View style={styles.rowContainer}>
           <View style={styles.inputContainer}>
-            <Text style={styles.header}>Job Status</Text>
+            <Text style={styles.header}>İş Statüsü</Text>
             <TextInput
               style={styles.input}
-              placeholder='Job Status'
+              placeholder='İş Statüsü'
               value={job.jobStatus}
               onChangeText={(text) => setJob({ ...job, jobStatus: text })}
             />
           </View>
           <View style={styles.inputContainer}>
-            <Text style={styles.header}>Job Type</Text>
+            <Text style={styles.header}>İş Tipi</Text>
             <TextInput
               style={styles.input}
-              placeholder='Job Type'
+              placeholder='İş Tipi'
               value={job.jobType}
               onChangeText={(text) => setJob({ ...job, jobType: text })}
             />
@@ -83,16 +83,16 @@ const AddJob = () => {
         </View>
         <View style={styles.rowContainer}>
           <View style={styles.inputContainer}>
-            <Text style={styles.header}>Job Location</Text>
+            <Text style={styles.header}>İş Lokasyonu</Text>
             <TextInput
               style={styles.input}
-              placeholder='Job Location'
+              placeholder='İş Lokasyonu'
               value={job.jobLocation}
               onChangeText={(text) => setJob({ ...job, jobLocation: text })}
             />
           </View>
           <View style={styles.inputContainer}>
-            <Text style={styles.header}>Job Date</Text>
+            <Text style={styles.header}>İş Tarihi</Text>
             <TextInput
               style={styles.input}
               placeholder='Job Date'
@@ -102,7 +102,7 @@ const AddJob = () => {
           </View>
         </View>
         <TouchableOpacity style={styles.button} onPress={handleSaveJob}>
-          <Text style={styles.buttonText}>Save Job</Text>
+          <Text style={styles.buttonText}>Kaydet</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

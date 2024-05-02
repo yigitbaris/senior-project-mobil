@@ -26,7 +26,7 @@ const Nöbet = ({ item }) => {
   const handleDeleteBtn = async () => {
     try {
       const response = await axios.delete(
-        `http://${API_IP}:5100/api/v1/jobs/${_id}`
+        `http://192.168.244.1:5100/api/v1/jobs/${_id}`
       )
       RootNavigation.navigate('AllJobs')
     } catch (error) {

@@ -31,7 +31,7 @@ const EditJob = () => {
       try {
         setLoading(true)
         const response = await axios.get(
-          `http://${API_IP}:5100/api/v1/jobs/${id}`
+          `http://192.168.244.1:5100/api/v1/jobs/${id}`
         )
         setJob(response.data.job)
         console.log(job)
@@ -46,7 +46,7 @@ const EditJob = () => {
   const handleSaveJob = async () => {
     try {
       console.log(job)
-      await axios.patch(`http://${API_IP}:5100/api/v1/jobs/${id}`, job)
+      await axios.patch(`http://192.168.244.1:5100/api/v1/jobs/${id}`, job)
       ToastManager.success('Job saved!')
       RootNavigation.navigate('AllJobs')
     } catch (error) {

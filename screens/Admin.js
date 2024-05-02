@@ -1,6 +1,17 @@
-import { Text } from 'react-native'
+import { Text, View } from 'react-native'
 
 const Admin = () => {
-  return <Text>Admin</Text>
+  return (
+    <View
+      style={{
+        backgroundColor: '#333',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <Text style={{ color: 'white', fontSize: 25 }}>Admin</Text>
+    </View>
+  )
 }
 export default Admin

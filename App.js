@@ -44,7 +44,7 @@ const DashboardFlow = () => (
       options={{
         tabBarColor: '#36a4c0',
         // tabBarBadge: 10,
-        tabBarLabel: 'Add Job',
+        tabBarLabel: 'İş Ekle',
         tabBarIcon: ({ focused }) => (
           <Icon name='add' color={focused ? '#36a4c0' : 'white'} size={25} />
         ),
@@ -54,7 +54,7 @@ const DashboardFlow = () => (
       name='AllJobs'
       component={AllJobs}
       options={{
-        tabBarLabel: 'AllJobs',
+        tabBarLabel: 'Tüm İşler',
         tabBarIcon: ({ focused }) => (
           <Icon name='list' color={focused ? '#36a4c0' : 'white'} size={25} />
         ),
@@ -64,7 +64,7 @@ const DashboardFlow = () => (
       name='Stats'
       component={Stats}
       options={{
-        tabBarLabel: 'Stats',
+        tabBarLabel: 'Istatistik',
         tabBarIcon: ({ focused }) => (
           <Icon
             name='bar-chart'
@@ -78,7 +78,7 @@ const DashboardFlow = () => (
       name='Profile'
       component={Profile}
       options={{
-        tabBarLabel: 'Profile',
+        tabBarLabel: 'Profil',
         tabBarIcon: ({ focused }) => (
           <Icon name='person' color={focused ? '#36a4c0' : 'white'} size={25} />
         ),
