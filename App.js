@@ -10,13 +10,15 @@ import {
   Stats,
   EditJob,
 } from './screens'
-import LogoutContainer from './components/components/LogoutContainer'
 import ToastManager from 'toastify-react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { Provider as AuthProvider } from './context/AuthContext'
 import { navigationRef } from './context/NavigationRef'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import { SafeAreaView } from 'react-native'
+import axios from 'axios'
+import { createContext, useContext, useEffect, useState } from 'react'
+import { UserRoleProvider, useUserRole } from './context/UserRoleContext'
 
 // const Tab = createBottomTabNavigator()
 const Stack = createStackNavigator()
@@ -100,13 +102,53 @@ const DashboardFlow = () => (
     />
   </TabMaterial.Navigator>
 )
-const EditJobFlow = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name='Edit' component={EditJob} />
-  </Stack.Navigator>
+const UserDashboardFlow = () => (
+  <TabMaterial.Navigator
+    barStyle={{ backgroundColor: '#3f3f3f' }}
+    activeColor='#36a4c0'
+    inactiveColor='white'
+    shifting={true}
+  >
+    <TabMaterial.Screen
+      name='AllJobs'
+      component={AllJobs}
+      options={{
+        tabBarLabel: 'Tüm İşler',
+        tabBarIcon: ({ focused }) => (
+          <Icon name='list' color={focused ? '#36a4c0' : 'white'} size={25} />
+        ),
+      }}
+    />
+
+    <TabMaterial.Screen
+      name='Profile'
+      component={Profile}
+      options={{
+        tabBarLabel: 'Profil',
+        tabBarIcon: ({ focused }) => (
+          <Icon name='person' color={focused ? '#36a4c0' : 'white'} size={25} />
+        ),
+      }}
+    />
+  </TabMaterial.Navigator>
 )
 
 const App = () => {
+  // const [userRole, setUserRole] = useState('')
+
+  // const adminCheck = async () => {
+  //   try {
+  //     const user = await axios.get(
+  //       `http://192.168.244.1:5100/api/v1/users/current-user`
+  //     )
+  //     setUserRole(user.data.user.role)
+  //   } catch (error) {
+  //     ToastManager.error('error!')
+  //     console.error('Login error:', error)
+  //   }
+  // }
+  // adminCheck()
+
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
@@ -115,7 +157,11 @@ const App = () => {
         }}
       >
         <Stack.Screen name='LoginFlow' component={LoginFlow} />
+
         <Stack.Screen name='DashboardFlow' component={DashboardFlow} />
+
+        <Stack.Screen name='UserDashboardFlow' component={UserDashboardFlow} />
+
         <Stack.Screen name='EditJobFlow' component={EditJob} />
       </Stack.Navigator>
       <ToastManager />
@@ -125,10 +171,12 @@ const App = () => {
 
 export default () => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </SafeAreaView>
+    <UserRoleProvider>
+      <SafeAreaView style={{ flex: 1 }}>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </SafeAreaView>
+    </UserRoleProvider>
   )
 }

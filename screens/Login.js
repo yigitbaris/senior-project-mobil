@@ -9,12 +9,13 @@ import {
 import ToastManager from 'toastify-react-native'
 import { useNavigation } from '@react-navigation/native'
 import axios from 'axios'
-import { API_IP } from '@env'
+import { useUserRole } from '../context/UserRoleContext'
 
 const Login = () => {
   const [email, setEmail] = useState('baris@gmail.com')
   const [password, setPassword] = useState('secret123')
   const navigation = useNavigation()
+  // const { denemelikData,  } = useUserRole()
 
   const handleLogin = async () => {
     try {
@@ -26,8 +27,19 @@ const Login = () => {
         }
       )
       ToastManager.success('Logged in!')
-
-      navigation.navigate('DashboardFlow', { screen: 'AddJob' })
+      try {
+        const user = await axios.get(
+          `http://192.168.244.1:5100/api/v1/users/current-user`
+        )
+        {
+          user.data.user.role === 'admin'
+            ? navigation.navigate('DashboardFlow', { screen: 'AddJob' })
+            : navigation.navigate('UserDashboardFlow', { screen: 'AllJob' })
+        }
+      } catch (error) {
+        ToastManager.error('error!')
+        console.error('Login error:', error)
+      }
     } catch (error) {
       // Handle login error, display toast message, etc.
       console.error('Login error:', error)
@@ -36,7 +48,7 @@ const Login = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>Log In</Text>
+      <Text style={styles.logo}>Giris Yap</Text>
 
       <View style={styles.form}>
         <Text style={styles.formTitle}></Text>
@@ -57,24 +69,24 @@ const Login = () => {
         />
 
         <TouchableOpacity style={styles.submitButton} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Log In</Text>
+          <Text style={styles.buttonText}>Giris</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.exploreButton}
           onPress={() => console.log('Explore button pressed')}
         >
           <Text style={styles.buttonText}>Explore the App</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         {/* Register Link */}
         <Text style={styles.registerLink}>
-          Not a member yet?{' '}
+          Henüz üye değil misin?{' '}
           <Text
             style={styles.linkText}
             onPress={() => navigation.navigate('Register')}
           >
-            Register
+            Kaydol
           </Text>
         </Text>
       </View>

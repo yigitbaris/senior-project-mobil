@@ -50,11 +50,11 @@ const Stats = () => {
       <View style={styles.container}>
         <Image source={{ uri: user.avatar }} style={styles.profileImage} />
         <View style={styles.addJob}>
-          <Text style={styles.addText}>Profile</Text>
+          <Text style={styles.addText}>Profil</Text>
         </View>
         <View style={styles.rowContainer}>
           <View style={styles.inputContainer}>
-            <Text style={styles.header}>Name</Text>
+            <Text style={styles.header}>İsim</Text>
             <TextInput
               style={styles.input}
               value={user.name}
@@ -62,7 +62,7 @@ const Stats = () => {
             />
           </View>
           <View style={styles.inputContainer}>
-            <Text style={styles.header}>Last Name</Text>
+            <Text style={styles.header}>Soy İsim</Text>
             <TextInput
               style={styles.input}
               value={user.lastName}
@@ -72,7 +72,7 @@ const Stats = () => {
         </View>
         <View style={styles.rowContainer}>
           <View style={styles.inputContainer}>
-            <Text style={styles.header}>e-mail</Text>
+            <Text style={styles.header}>E-mail</Text>
             <TextInput
               style={styles.input}
               value={user.email}
@@ -80,7 +80,7 @@ const Stats = () => {
             />
           </View>
           <View style={styles.inputContainer}>
-            <Text style={styles.header}>Location</Text>
+            <Text style={styles.header}>Lokasyon</Text>
             <TextInput
               style={styles.input}
               value={user.location}
@@ -90,10 +90,10 @@ const Stats = () => {
         </View>
 
         <TouchableOpacity style={styles.button} onPress={handleSaveProfile}>
-          <Text style={styles.buttonText}>Save Profile</Text>
+          <Text style={styles.buttonText}>Profili Kaydet</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonQuit} onPress={signOut}>
-          <Text style={styles.buttonText}>Quit</Text>
+          <Text style={styles.buttonText}>Çıkıs</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

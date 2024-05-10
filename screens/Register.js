@@ -35,7 +35,7 @@ const Register = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.formTitle}>Create your account</Text>
+      <Text style={styles.formTitle}>Hesabını olustur</Text>
 
       {/* Name Input */}
       <TextInput
@@ -87,16 +87,16 @@ const Register = ({ navigation }) => {
 
       {/* Submit Button */}
       <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>Sign up</Text>
+        <Text style={styles.buttonText}>Kaydol</Text>
       </TouchableOpacity>
 
       <Text style={styles.registerLink}>
-        Already have an account?{' '}
+        Zaten üye misin?{' '}
         <Text
           style={styles.linkText}
           onPress={() => navigation.navigate('Login')}
         >
-          Log in
+          Giris Yap
         </Text>
       </Text>
     </View>

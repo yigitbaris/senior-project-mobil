@@ -71,10 +71,10 @@ const Nöbet = ({ item }) => {
         </View>
         <View style={styles.btn}>
           <TouchableOpacity style={styles.editBtn} onPress={handleEditBtn}>
-            <Text style={styles.buttonText}>Edit</Text>
+            <Text style={styles.buttonText}>Düzenle</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.deleteBtn} onPress={handleDeleteBtn}>
-            <Text style={styles.buttonText}>Delete</Text>
+            <Text style={styles.buttonText}>Sil</Text>
           </TouchableOpacity>
         </View>
       </View>
