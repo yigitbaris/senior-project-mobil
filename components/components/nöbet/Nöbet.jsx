@@ -7,7 +7,7 @@ import axios from 'axios'
 import styles from './nöbet.style'
 import { API_IP } from '@env'
 
-const Nöbet = ({ item }) => {
+const Nöbet = ({ item, deleteJob }) => {
   const {
     company,
     position,
@@ -25,10 +25,9 @@ const Nöbet = ({ item }) => {
 
   const handleDeleteBtn = async () => {
     try {
-      const response = await axios.delete(
-        `http://192.168.244.1:5100/api/v1/jobs/${_id}`
-      )
-      RootNavigation.navigate('AllJobs')
+      await axios.delete(`http://192.168.244.1:5100/api/v1/jobs/${_id}`)
+      deleteJob(_id)
+      // RootNavigation.navigate('AllJobs')
     } catch (error) {
       console.error('Login error:', error)
     }

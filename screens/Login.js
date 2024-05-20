@@ -17,7 +17,16 @@ const Login = () => {
   const navigation = useNavigation()
   // const { denemelikData,  } = useUserRole()
 
+  const isValidEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return regex.test(email)
+  }
+
   const handleLogin = async () => {
+    if (!isValidEmail(email)) {
+      ToastManager.error(' email is not valid.')
+      return
+    }
     try {
       const response = await axios.post(
         `http://192.168.244.1:5100/api/v1/auth/login`,
@@ -41,7 +50,7 @@ const Login = () => {
         console.error('Login error:', error)
       }
     } catch (error) {
-      // Handle login error, display toast message, etc.
+      ToastManager.error('email not found!')
       console.error('Login error:', error)
     }
   }
@@ -72,14 +81,6 @@ const Login = () => {
           <Text style={styles.buttonText}>Giris</Text>
         </TouchableOpacity>
 
-        {/* <TouchableOpacity
-          style={styles.exploreButton}
-          onPress={() => console.log('Explore button pressed')}
-        >
-          <Text style={styles.buttonText}>Explore the App</Text>
-        </TouchableOpacity> */}
-
-        {/* Register Link */}
         <Text style={styles.registerLink}>
           Henüz üye değil misin?{' '}
           <Text

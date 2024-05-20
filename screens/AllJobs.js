@@ -11,13 +11,10 @@ import axios from 'axios'
 import Nöbet from '../components/components/nöbet/Nöbet'
 import { COLORS, SIZES } from '../assets/constants'
 import { useIsFocused } from '@react-navigation/native'
-import { API_IP } from '@env'
 
 const AllJobs = () => {
   const [data, setData] = useState([])
-  const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [selectedJob, setSelectedJob] = useState([])
 
   const isFocused = useIsFocused()
 
@@ -37,14 +34,8 @@ const AllJobs = () => {
     fetchData()
     //her focus değiştiğinde tekrardan fetch edecek
   }, [isFocused])
-
-  const handleCardPress = (item) => {
-    if (item._id === selectedJob) {
-      setSelectedJob('')
-      return
-    }
-    console.log(item._id + 'pressed')
-    setSelectedJob(item._id)
+  const deleteJob = (id) => {
+    setData(data.filter((job) => job._id !== id))
   }
   return (
     <View style={styles.container}>
@@ -56,22 +47,24 @@ const AllJobs = () => {
         <ActivityIndicator size='large' style={styles.loadingBar} />
       ) : (
         <>
-          <View style={styles.cardsContainer}>
-            <FlatList
-              data={data}
-              renderItem={({ item }) => (
-                <Nöbet
-                  item={item}
-                  selectedJob={selectedJob}
-                  handleCardPress={handleCardPress}
-                />
-              )}
-              keyExtractor={(item) => item._id}
-              ItemSeparatorComponent={() => (
-                <View style={{ height: SIZES.medium }} />
-              )}
-            />
-          </View>
+          {data.length === 0 ? (
+            <View style={styles.noJobsContainer}>
+              <Text style={styles.noJobsText}>Gösterilecek iş yok...</Text>
+            </View>
+          ) : (
+            <View style={styles.cardsContainer}>
+              <FlatList
+                data={data}
+                renderItem={({ item }) => (
+                  <Nöbet item={item} deleteJob={deleteJob} />
+                )}
+                keyExtractor={(item) => item._id}
+                ItemSeparatorComponent={() => (
+                  <View style={{ height: SIZES.medium }} />
+                )}
+              />
+            </View>
+          )}
         </>
       )}
     </View>
@@ -81,6 +74,7 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: SIZES.xxLarge,
     backgroundColor: '#333',
+    flex: 1,
   },
   header: {
     flexDirection: 'row',
@@ -109,6 +103,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: '100%',
     color: '#36a4c0',
+  },
+  noJobsText: {
+    color: 'white',
+    alignSelf: 'center',
+    marginTop: 100,
+    fontSize: 25,
   },
 })
 
