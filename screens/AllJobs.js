@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from 'react-native'
 import axios from 'axios'
-import Nöbet from '../components/components/nöbet/Nöbet'
+import Nöbet from '../components/components/Nöbet'
 import { COLORS, SIZES } from '../assets/constants'
 import { useIsFocused } from '@react-navigation/native'
 

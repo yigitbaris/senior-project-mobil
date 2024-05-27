@@ -79,8 +79,9 @@ const AddJob = () => {
             <Text style={styles.header}>İş Statüsü</Text>
             <View style={styles.pickerContainer}>
               <Picker
-                selectedValue={job.jobType}
-                onValueChange={(value) => setJob({ ...job, jobType: value })}
+                selectedValue={job.jobStatus}
+                onValueChange={(value) => setJob({ ...job, jobStatus: value })}
+                style={styles.pickerList}
               >
                 <Picker.Item
                   label={'beklemede'}
@@ -106,6 +107,7 @@ const AddJob = () => {
               <Picker
                 selectedValue={job.jobType}
                 onValueChange={(value) => setJob({ ...job, jobType: value })}
+                style={styles.pickerList}
               >
                 <Picker.Item
                   label={'tam-zamanlı'}
@@ -143,6 +145,7 @@ const AddJob = () => {
               <Picker
                 selectedValue={job.jobDate}
                 onValueChange={(value) => setJob({ ...job, jobDate: value })}
+                style={styles.pickerList}
               >
                 {getCurrentWeekDays().map((day, index) => (
                   <Picker.Item
@@ -227,12 +230,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
   },
-  pickerItem: {
-    color: 'white',
-    fontSize: 15,
-    backgroundColor: '#3f3f3f',
-    borderRadius: 20,
-  },
   pickerContainer: {
     borderWidth: 1,
     borderColor: '#3f3f3f',
@@ -240,6 +237,12 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     overflow: 'hidden',
     paddingStart: 10,
+  },
+  pickerList: { flexGrow: 1 },
+  pickerItem: {
+    color: 'white',
+    fontSize: 15,
+    backgroundColor: '#3f3f3f',
   },
 })
 
