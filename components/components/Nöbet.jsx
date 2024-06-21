@@ -5,7 +5,7 @@ import JobInfo from './JobInfo'
 import * as RootNavigation from '../../context/NavigationRef'
 import axios from 'axios'
 
-const Nöbet = ({ item, deleteJob }) => {
+const Nöbet = ({ item, deleteJob, userRole }) => {
   const {
     company,
     position,
@@ -42,9 +42,11 @@ const Nöbet = ({ item, deleteJob }) => {
             <Text style={styles.position}>{position}</Text>
             <Text style={styles.company}>{company}</Text>
           </View>
-          <View style={styles.status}>
-            <Text style={styles.statusText}>{jobStatus}</Text>
-          </View>
+          {userRole === 'admin' && (
+            <View style={styles.status}>
+              <Text style={styles.statusText}>{jobStatus}</Text>
+            </View>
+          )}
         </View>
       </View>
       <View style={styles.content}>
@@ -66,14 +68,19 @@ const Nöbet = ({ item, deleteJob }) => {
             text={jobDate}
           />
         </View>
-        <View style={styles.btn}>
-          <TouchableOpacity style={styles.editBtn} onPress={handleEditBtn}>
-            <Text style={styles.buttonText}>Düzenle</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.deleteBtn} onPress={handleDeleteBtn}>
-            <Text style={styles.buttonText}>Sil</Text>
-          </TouchableOpacity>
-        </View>
+        {userRole === 'admin' && (
+          <View style={styles.btn}>
+            <TouchableOpacity style={styles.editBtn} onPress={handleEditBtn}>
+              <Text style={styles.buttonText}>Düzenle</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.deleteBtn}
+              onPress={handleDeleteBtn}
+            >
+              <Text style={styles.buttonText}>Sil</Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </View>
   )

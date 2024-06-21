@@ -4,10 +4,13 @@ import { SIZES } from '../assets/constants'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { FaSuitcaseRolling, FaCalendarCheck } from 'react-icons/fa'
+import { useIsFocused } from '@react-navigation/native'
 
 const Stats = () => {
   const [data, setData] = useState({ users: '0', jobs: '0' })
   const [loading, setLoading] = useState(false)
+  const isFocused = useIsFocused()
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -22,7 +25,7 @@ const Stats = () => {
       }
     }
     fetchData()
-  }, [])
+  }, [isFocused])
   return (
     <View style={styles.mainView}>
       <View>

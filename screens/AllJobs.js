@@ -14,6 +14,7 @@ import { useIsFocused } from '@react-navigation/native'
 
 const AllJobs = () => {
   const [data, setData] = useState([])
+  const [userRole, setUserRole] = useState('')
   const [loading, setLoading] = useState(true)
 
   const isFocused = useIsFocused()
@@ -27,6 +28,10 @@ const AllJobs = () => {
         )
         setData(response.data.jobs)
         setLoading(false)
+        const roleResponse = await axios.get(
+          `http://192.168.244.1:5100/api/v1/users/current-user`
+        )
+        setUserRole(roleResponse.data.user.role)
       } catch (error) {
         console.error('Login error:', error)
       }
@@ -56,7 +61,11 @@ const AllJobs = () => {
               <FlatList
                 data={data}
                 renderItem={({ item }) => (
-                  <Nöbet item={item} deleteJob={deleteJob} />
+                  <Nöbet
+                    item={item}
+                    userRole={userRole}
+                    deleteJob={deleteJob}
+                  />
                 )}
                 keyExtractor={(item) => item._id}
                 ItemSeparatorComponent={() => (
