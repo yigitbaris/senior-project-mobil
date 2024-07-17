@@ -44,7 +44,15 @@ const Nöbet = ({ item, deleteJob, userRole }) => {
           </View>
           {userRole === 'admin' && (
             <View style={styles.status}>
-              <Text style={styles.statusText}>{jobStatus}</Text>
+              <Text style={styles.statusText}>
+                {jobStatus === 'pending'
+                  ? 'Beklemede'
+                  : jobStatus === 'interview'
+                  ? 'Atandı'
+                  : jobStatus === 'declined'
+                  ? 'Reddedildi'
+                  : 'Bilinmeyen Durum'}
+              </Text>
             </View>
           )}
         </View>

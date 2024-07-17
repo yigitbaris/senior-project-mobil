@@ -1,14 +1,15 @@
 import axios from 'axios'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import ToastManager from 'toastify-react-native'
 
 const Admin = () => {
   const handleAdminButton = async () => {
-    console.log('admin button pressed')
     try {
       const resp = await axios.get(
         `http://192.168.244.1:5100/api/v1/users/admin/nobet-ata`
       )
       console.log(resp.data)
+      ToastManager.success('Nöbetler Atandı!')
     } catch (error) {
       console.error('Login error:', error)
     }
@@ -28,7 +29,7 @@ const Admin = () => {
       </Text>
       <View style={{ padding: 20 }}></View>
       <TouchableOpacity style={style.adminButton} onPress={handleAdminButton}>
-        <Text style={style.adminButtonText}>denemelik tuş</Text>
+        <Text style={style.adminButtonText}>Nöbet Ata</Text>
       </TouchableOpacity>
     </View>
   )
@@ -37,7 +38,8 @@ const Admin = () => {
 const style = StyleSheet.create({
   adminButton: {
     backgroundColor: '#36a4c0',
-    height: 80,
+    height: 60,
+    width: 150,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 20,
