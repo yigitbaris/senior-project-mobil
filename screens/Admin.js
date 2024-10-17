@@ -6,7 +6,7 @@ const Admin = () => {
   const handleAdminButton = async () => {
     try {
       const resp = await axios.get(
-        `http://192.168.244.1:5100/api/v1/users/admin/nobet-ata`
+        `YOUR_IP_ADDRESS:5100/api/v1/users/admin/nobet-ata`
       )
       console.log(resp.data)
       ToastManager.success('Nöbetler Atandı!')

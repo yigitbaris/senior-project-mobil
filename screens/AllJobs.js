@@ -23,13 +23,11 @@ const AllJobs = () => {
     const fetchData = async () => {
       try {
         setLoading(true)
-        const response = await axios.get(
-          `http://192.168.244.1:5100/api/v1/jobs`
-        )
+        const response = await axios.get(`YOUR_IP_ADDRESS:5100/api/v1/jobs`)
         setData(response.data.jobs)
         setLoading(false)
         const roleResponse = await axios.get(
-          `http://192.168.244.1:5100/api/v1/users/current-user`
+          `YOUR_IP_ADDRESS:5100/api/v1/users/current-user`
         )
         setUserRole(roleResponse.data.user.role)
       } catch (error) {

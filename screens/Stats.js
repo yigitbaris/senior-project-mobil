@@ -16,7 +16,7 @@ const Stats = () => {
       try {
         setLoading(true)
         const response = await axios.get(
-          `http://192.168.244.1:5100/api/v1/users/admin/app-stats`
+          `YOUR_IP_ADDRESS:5100/api/v1/users/admin/app-stats`
         )
         setData(response.data)
         setLoading(false)

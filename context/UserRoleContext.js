@@ -11,7 +11,7 @@ export const UserRoleProvider = ({ children }) => {
   const adminCheck = async () => {
     try {
       const user = await axios.get(
-        `http://192.168.244.1:5100/api/v1/users/current-user`
+        `YOUR_IP_ADDRESS:5100/api/v1/users/current-user`
       )
       setUserRole(user.data.user.role)
     } catch (error) {

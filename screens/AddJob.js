@@ -38,7 +38,7 @@ const AddJob = () => {
   })
   const handleSaveJob = async () => {
     try {
-      await axios.post(`http://192.168.244.1:5100/api/v1/jobs`, job)
+      await axios.post(`YOUR_IP_ADDRESS:5100/api/v1/jobs`, job)
       setJob({ ...job, jobDate: getCurrentWeekDays()[0] })
       ToastManager.success('Job saved!')
       RootNavigation.navigate('AllJobs')

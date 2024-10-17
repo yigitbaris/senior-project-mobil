@@ -29,7 +29,7 @@ const Login = () => {
     }
     try {
       const response = await axios.post(
-        `http://192.168.244.1:5100/api/v1/auth/login`,
+        `YOUR_IP_ADDRESS:5100/api/v1/auth/login`,
         {
           email: email,
           password: password,
@@ -38,7 +38,7 @@ const Login = () => {
       ToastManager.success('Logged in!')
       try {
         const user = await axios.get(
-          `http://192.168.244.1:5100/api/v1/users/current-user`
+          `YOUR_IP_ADDRESS:5100/api/v1/users/current-user`
         )
         {
           user.data.user.role === 'admin'

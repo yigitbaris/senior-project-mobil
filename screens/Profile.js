@@ -21,7 +21,7 @@ const Stats = () => {
     const currentUser = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.244.1:5100/api/v1/users/current-user`
+          `YOUR_IP_ADDRESS:5100/api/v1/users/current-user`
         )
         setUser(response.data.user)
       } catch (error) {
@@ -34,10 +34,7 @@ const Stats = () => {
 
   const handleSaveProfile = async () => {
     try {
-      await axios.patch(
-        'http://192.168.244.1:5100/api/v1/users/update-user',
-        user
-      )
+      await axios.patch('YOUR_IP_ADDRESS:5100/api/v1/users/update-user', user)
       ToastManager.success('User Updated!')
     } catch (error) {
       ToastManager.error('error!')
